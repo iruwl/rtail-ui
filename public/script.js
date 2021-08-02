@@ -114,11 +114,12 @@ function formatLine(line) {
 // https://github.com/component/escape-html/blob/master/index.js#L22
 function escapeHtml(html) {
     return String(html)
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+    // return String(html)
+    //     .replace(/&/g, '&amp;')
+    //     .replace(/"/g, '&quot;')
+    //     .replace(/'/g, '&#39;')
+    //     .replace(/</g, '&lt;')
+    //     .replace(/>/g, '&gt;');
 }
 
 // == UI =======================================================================
@@ -201,7 +202,9 @@ function clearLines(element) {
 function addLine(msg) {
     const lineElement = document.createElement('p')
     lineElement.classList.add('font-monospace')
+    lineElement.classList.add('text-break')
     lineElement.style.fontSize = "0.8rem"
+    lineElement.style.whiteSpace = "pre-wrap"
     lineElement.innerText = msg
     docStreamLines.appendChild(lineElement)
     // scroll

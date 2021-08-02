@@ -33,6 +33,7 @@ let streams = {}
 let socket = dgram.createSocket('udp4')
 socket.on('message', function (data, remote) {
     console.log('# On Message')
+    console.log(`socket got message from ${remote.address}:${remote.port}`);
 
     // try to decode JSON
     try {
@@ -73,6 +74,14 @@ socket.on('message', function (data, remote) {
 
     console.log()
 })
+socket.on('error', (err) => {
+    console.log(`socket error:\n${err.stack}`);
+    socket.close();
+});
+socket.on('listening', () => {
+    const address = socket.address();
+    console.log(`socket listening ${address.address}:${address.port}`);
+});
 
 /*!
  * socket.io
@@ -108,9 +117,11 @@ io.on('connection', function (socket) {
 // app.use('/', serve(__dirname + '/../public'))
 // app.use('/node_modules', serve(__dirname + '/../node_modules'))
 // io.path('/app/socket.io')
-// app.use('/', serve(__dirname + '/../public'))
-app.use(serve('public'))
+
+// app.use(serve('public'))
+app.use('/', serve(__dirname + '/public'))
 app.use('/node_modules', serve(__dirname + '/node_modules'))
+// io.path('/socket.io')
 
 /*!
  * listen!
