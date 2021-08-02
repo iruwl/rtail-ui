@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "bootstrap": "^5.0.2",
