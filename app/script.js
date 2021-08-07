@@ -6,6 +6,8 @@
 //     console.log(param)
 // })();
 
+'use strict'
+
 var lines = []
 var streams = []
 var activeStream = ''
@@ -13,10 +15,13 @@ var pauseScroll = false
 var lastScrollTop = 0
 var BUFFER_SIZE = 100
 
+console.log("hola");
 console.log('origin: ' + document.location.origin)
 console.log('pathname: ' + document.location.pathname)
 // const socket = io();
-const socket = io(document.location.origin, { path: document.location.pathname + 'socket.io' })
+const socket = io(document.location.origin, {
+    path: document.location.pathname + 'socket.io'
+})
 
 socket.on('connect', function () {
     console.info('connected')
